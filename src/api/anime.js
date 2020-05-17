@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react';
 import "../styles/api/Anime.style.sass"
 import { Bar } from 'react-chartjs-2';
 const DataFetching = () => {
-  const [results, setResults] = useState([]);
-  const [ratings, setRatings] = useState([]);
-  const ratingArray = [];
+  const [results, setResults] = useState(null);
+  const [ratings, setRatings] = useState(null);
   const url = "https://kitsu.io/api/edge/anime";
 
   useEffect(()=>{
@@ -17,6 +16,7 @@ const DataFetching = () => {
       // anime.forEach((item) =>{
       //   console.log(item.attributes.ratingFrequencies)
       // })
+      const ratingArray = [];
       for(var i = 0; i < anime.length; i++){
         ratingArray.push(anime[i].attributes.ratingFrequencies)
       }
@@ -25,23 +25,27 @@ const DataFetching = () => {
     })
     .catch((error) => console.log(error));
   },[])
-  console.log("this is ratings", ratings);
+  console.log("this is ratings", typeof ratings);
   return (
     <div className = "anime">
-        {results.map(result => {      
+        {results && ratings ? 
+        results.map((result, index) => {      
           if(result.attributes.posterImage){
             return <div key = {result.id}>
               <p>{result.attributes.canonicalTitle}</p>
               <img src ={result.attributes.posterImage.medium} alt ="Cover"/>
-            </div>
+              <Bar
+                data={{
+                  labels: Object.keys(ratings[index])
+                }}
+              /> 
+            </div> 
           }
           return null;
-        })}
-        {/* <Bar
-          data={
-            labels: 
-          }
-        /> */}
+        })
+        : null}
+
+        
     </div>
   ); 
 };
