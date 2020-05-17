@@ -36,15 +36,15 @@ const DataFetching = () => {
   }, []);
 
   return (
-    <div className="anime">
+    <div className="anime-list">
       {results && ratings
         ? results.map((result, index) => {
             if (result.attributes.posterImage) {
               return (
-                <div key={result.id}>
-                  <p>{result.attributes.canonicalTitle}</p>
+                <div className="anime" key={result.id}>
                   <img src={result.attributes.posterImage.tiny} alt="Cover" />
-                  <Bar
+                  {/* <p>{result.attributes.canonicalTitle}</p> */}
+                  {/* <Bar
                     data={{
                       labels: Object.keys(ratings[index]),
                       datasets: [
@@ -57,13 +57,13 @@ const DataFetching = () => {
                         },
                       ],
                     }}
-                  />
+                  /> */}
                 </div>
               );
             }
             return null;
           })
-        : "Missing data"}
+        : "Loading data"}
     </div>
   );
 };
