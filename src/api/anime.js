@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/api/Anime.style.sass";
-import { Bar } from "react-chartjs-2";
+import AnimeScreen from "../components/AnimeScreen";
+
 const DataFetching = () => {
   const [results, setResults] = useState(null);
   const [ratings, setRatings] = useState(null);
@@ -34,36 +35,22 @@ const DataFetching = () => {
     }
     getAnime();
   }, []);
-
+;
   return (
     <div className="anime-list">
       {results && ratings
         ? results.map((result, index) => {
             if (result.attributes.posterImage) {
               return (
-                <div className="anime" key={result.id}>
+                <div className="anime" key={result.id} onClick={<AnimeScreen results = {results} ratings ={ratings}/>}>
                   <img src={result.attributes.posterImage.tiny} alt="Cover" />
-                  {/* <p>{result.attributes.canonicalTitle}</p> */}
-                  {/* <Bar
-                    data={{
-                      labels: Object.keys(ratings[index]),
-                      datasets: [
-                        {
-                          label: "Rating Frequency",
-                          data: Object.values(ratings[index]),
-                          backgroundColor: "rgba(54, 162, 235, 0.8)",
-                          borderColor: "rgba(0,0,0,1)",
-                          borderWidth: 2,
-                        },
-                      ],
-                    }}
-                  /> */}
                 </div>
               );
             }
             return null;
           })
         : "Loading data"}
+       
     </div>
   );
 };
