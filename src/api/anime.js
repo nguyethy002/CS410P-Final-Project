@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../styles/api/Anime.style.sass";
 import AnimeScreen from "../components/AnimeScreen";
+import Carousel from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
+import SearchBar from "../components/SearchBar";
 
 const DataFetching = () => {
   const [results, setResults] = useState(null);
   const [ratings, setRatings] = useState(null);
-  const url = "https://kitsu.io/api/edge/anime";
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
+  const url = "https://kitsu.io/api/edge/anime";
+ 
   useEffect(() => {
     async function getAnime() {
       try {
@@ -35,22 +40,42 @@ const DataFetching = () => {
     }
     getAnime();
   }, []);
-;
+
+  function carousel(){
+    return(
+    <Carousel className="anime-list" slidesPerPage={5} arrows infinite>
+        {results && ratings
+          ? results.map((result, index) => {
+              if (result.attributes.posterImage) {
+                return (
+                  <button
+                    onClick={() => setSelectedIndex(index)}
+                    className="anime"
+                    key={result.id}
+                  >
+                    <img src={result.attributes.posterImage.tiny} alt="Cover" />
+                  </button>
+                );
+              }
+              return null;
+            })
+          : "Loading data"}
+      </Carousel>
+    )
+  }
+
   return (
-    <div className="anime-list">
-      {results && ratings
-        ? results.map((result, index) => {
-            if (result.attributes.posterImage) {
-              return (
-                <div className="anime" key={result.id} onClick={<AnimeScreen results = {results} ratings ={ratings}/>}>
-                  <img src={result.attributes.posterImage.tiny} alt="Cover" />
-                </div>
-              );
-            }
-            return null;
-          })
-        : "Loading data"}
-       
+    <div className="anime-container">
+      <SearchBar results ={results}/>
+      {carousel()}
+      {selectedIndex >= 0 ? (
+        <AnimeScreen
+          anime={results[selectedIndex]}
+          rating={ratings[selectedIndex]}
+        />
+      ) : (
+        "Click an anime"
+      )}
     </div>
   );
 };
