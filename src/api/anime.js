@@ -1,17 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../styles/api/Anime.style.sass";
+
 import AnimeScreen from "../components/AnimeScreen";
-import Carousel from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
 import SearchBar from "../components/SearchBar";
 
+import Carousel from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
+
+import { useStoreActions, useStoreState } from "easy-peasy";
+
 const DataFetching = () => {
-  const [results, setResults] = useState(null);
-  const [ratings, setRatings] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const { animeList, ratingList, selectedIndex } = useStoreState(
+    (state) => state.anime
+  );
+  const { setAnimeList, setRatingList, changeAnime } = useStoreActions(
+    (actions) => actions.anime
+  );
 
   const url = "https://kitsu.io/api/edge/anime";
- 
+
   useEffect(() => {
     async function getAnime() {
       try {
@@ -32,8 +39,8 @@ const DataFetching = () => {
           nextUrl = data.links.next;
         }
 
-        setResults(animeArray);
-        setRatings(ratingArray);
+        setAnimeList({ animeList: animeArray });
+        setRatingList({ ratingList: ratingArray });
       } catch (error) {
         console.log("Request failed", error);
       }
@@ -41,16 +48,15 @@ const DataFetching = () => {
     getAnime();
   }, []);
 
-  function carousel(){
-    return(
-    <Carousel className="anime-list" slidesPerPage={5} arrows infinite>
-        {results && ratings
-          ? results.map((result, index) => {
+  function carousel() {
+    return (
+      <Carousel className="anime-list" slidesPerPage={5} arrows infinite>
+        {animeList && ratingList
+          ? animeList.map((result, index) => {
               if (result.attributes.posterImage) {
                 return (
                   <button
-                    onClick={() => setSelectedIndex(index)}
-                    className="anime"
+                    onClick={() => changeAnime({ index })}
                     key={result.id}
                   >
                     <img src={result.attributes.posterImage.tiny} alt="Cover" />
@@ -61,18 +67,15 @@ const DataFetching = () => {
             })
           : "Loading data"}
       </Carousel>
-    )
+    );
   }
 
   return (
     <div className="anime-container">
-      <SearchBar results ={results}/>
+      <SearchBar />
       {carousel()}
       {selectedIndex >= 0 ? (
-        <AnimeScreen
-          anime={results[selectedIndex]}
-          rating={ratings[selectedIndex]}
-        />
+        <AnimeScreen/>
       ) : (
         "Click an anime"
       )}
@@ -81,33 +84,3 @@ const DataFetching = () => {
 };
 
 export default DataFetching;
-
-// axios.get(url)
-//   .then((response)=> response.json())
-//   .then((data) => {
-//     console.log(data.data)
-//     let characters = data.data
-
-//     characters.forEach((item)=>{
-//     console.log(item.attributes.titles)
-//     })
-//   })
-//   .catch((error) => console.log(error));
-
-// fetch(url)
-// .then((response)=> response.json())
-// .then((data) => {
-//   let anime = data.data;
-//   console.log(anime)
-//   // console.log(typeof anime[0].attributes.ratingFrequencies)
-//   // anime.forEach((item) =>{
-//   //   console.log(item.attributes.ratingFrequencies)
-//   // })
-//   const ratingArray = [];
-//   for(var i = 0; i < anime.length; i++){
-//     ratingArray.push(anime[i].attributes.ratingFrequencies)
-//   }
-//   setResults(anime)
-//   setRatings(ratingArray);
-// })
-// .catch((error) => console.log(error));

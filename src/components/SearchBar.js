@@ -1,39 +1,25 @@
-import React, { useState, useEffect } from "react";
-const SearchBar = (props) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchFound, setSearchFound] = useState([]);
+import React from "react";
+import { useStoreActions, useStoreState } from "easy-peasy";
+
+import "../styles/components/SearchBar.style.sass";
+
+const SearchBar = () => {
+  const searchResult = useStoreState((state) => state.anime.searchResult);
+  const searchAnime = useStoreActions((actions) => actions.anime.searchAnime);
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    searchAnime({ searchTerm: event.target.value });
   };
-
-  useEffect(() => {
-    if (props.results) {
-      const animeList = props.results;
-      const found = animeList.filter((anime) =>
-        // console.log(anime.attributes.canonicalTitle)
-        anime.attributes.canonicalTitle.toLowerCase().includes(searchTerm)
-      );
-      setSearchFound(found);
-    }
-  }, [searchTerm]);
-  console.log(searchFound);
+  console.log(searchResult.length)
   return (
     <div className="search-bar">
-      <input
-        type="text"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={handleChange}
-      />
+      <input type="text" placeholder="Search" onChange={handleChange} />
       <ul>
-        {searchFound.map((item) => {
-          if(searchTerm !== ""){
-            while (item.id < 5) {
-              return <li key={item.id}>{item.attributes.canonicalTitle}</li>;
-            }
-          }
-        })}
+        {searchResult && searchResult.length != 50 
+          ? searchResult.map((item) => (
+              <li key={item.id}>{item.attributes.canonicalTitle}</li>
+            ))
+          : null}
       </ul>
     </div>
   );

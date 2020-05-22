@@ -1,16 +1,17 @@
-import React from 'react';
+import React from "react";
 import "../styles/pages/Home.style.sass";
-import "../api/anime"
-import "../components/AnimeScreen"
-import DataFetching from '../api/anime';
+import DataFetching from "../api/Anime";
+import SideBar from "../components/SideBar";
+
 const Home = () => {
-  
   return (
-    <div className="home">
-      
-      <DataFetching/>
+    <div className="home-container">
+      <SideBar />
+      <div className="home-anime">
+        <DataFetching />
+      </div>
     </div>
-  ); 
+  );
 };
 
 export default Home;
