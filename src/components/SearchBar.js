@@ -10,12 +10,12 @@ const SearchBar = () => {
   const handleChange = (event) => {
     searchAnime({ searchTerm: event.target.value });
   };
-  console.log(searchResult.length)
+ 
   return (
     <div className="search-bar">
       <input type="text" placeholder="Search" onChange={handleChange} />
       <ul>
-        {searchResult && searchResult.length != 50 
+        {searchResult && searchResult.length !== 50 
           ? searchResult.map((item) => (
               <li key={item.id}>{item.attributes.canonicalTitle}</li>
             ))

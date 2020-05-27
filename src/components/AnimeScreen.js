@@ -1,6 +1,6 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import { useStoreState, useStore } from "easy-peasy";
+import { useStoreState } from "easy-peasy";
 
 import "../styles/components/AnimeData.style.sass";
 
@@ -29,12 +29,16 @@ const AnimeScreen = () => {
 
   function haha() {
     if (anime && rating) {
-      if (anime.attributes.posterImage) {
+      if (anime.attributes.posterImage && anime.attributes.coverImage) {
         return (
           <div className="anime" key={anime.id}>
-            <img src={anime.attributes.posterImage.tiny} alt="Cover" />
+            <div>
+            <img src={anime.attributes.coverImage.original} alt="Cover" />
+            </div>
+            <div className ="anime-data">
             <p>{anime.attributes.canonicalTitle}</p>
             <Bar data={data} />
+            </div>
           </div>
         );
       }
