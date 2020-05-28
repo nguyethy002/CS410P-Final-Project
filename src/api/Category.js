@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useStoreState } from "easy-peasy";
 const Category = () => {
-  const anAnime = useStoreState(
-    ({ anime }) => anime.animeList[anime.selectedIndex]
-  );
+  const anAnime = useStoreState(({ anime }) => anime.selectedAnime);
   useEffect(() => {
     async function getGenre() {
       if (anAnime) {
@@ -15,7 +13,7 @@ const Category = () => {
     }
     getGenre();
   }, [anAnime]);
-  
+
   return <div className="category">Category</div>;
 };
 

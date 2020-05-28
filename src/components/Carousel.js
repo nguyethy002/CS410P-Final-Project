@@ -18,42 +18,44 @@ const CarouselScreen = () => {
     return (
       <Carousel
         className="anime-list"
-        slidesPerPage={5}
-        arrows
+        slidesPerPage={4}
         infinite
         arrowLeft={<Icon name="chevron-left"/>}
         arrowRight={<Icon name="chevron-right" />}
         addArrowClickHandler
+        
       >
         {animeList && ratingList
-          ? animeList.map((result, index) => {
+          ? animeList.map((result) => {
               if (
                 result.attributes.posterImage &&
                 result.attributes.coverImage
               ) {
                 return (
                   <button
-                    onClick={() => changeAnime({ index })}
+                    onClick={() => changeAnime(result)}
                     key={result.id}
                   >
-                    <img
-                      id="image"
-                      src={result.attributes.coverImage.original}
-                      alt="Cover"
-                    />
+                    <div className ="anime-image">
+                      <img
+                        id="image"
+                        src={result.attributes.coverImage.original}
+                        alt="Cover"
+                      />
+                    </div>
                   </button>
                 );
               }
               return null;
             })
-          : "Loading data"}
+          : <p>Loading data</p>}
       </Carousel>
     );
     
   }
 
   return (
-    <div className="anime-container">
+    <div className="anime-carousel">
       {carousel()}
     </div>
   );

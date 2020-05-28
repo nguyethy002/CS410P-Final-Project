@@ -1,7 +1,9 @@
 @import "../general.style"
-.anime-container
-  height: 
-
-#image
-  @apply h-40 w-full
-
+.anime-carousel
+  @apply w-full mb-10 bg-indigo-500 bg-opacity-25
+  img
+    @apply h-40 w-full z-0 relative transition duration-700 
+  img:hover
+    @apply transform scale-150 z-10  
+.anime-image
+  @apply px-2
