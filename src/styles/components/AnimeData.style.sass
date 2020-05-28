@@ -1,13 +1,31 @@
 @import "../general.style"
-.anime-data
-  // @apply h-full w-full 
+.anime-container
+  @apply flex flex-col items-center
 .anime
-  @apply flex flex-col justify-center items-center h-screen
+  @apply relative
+  @apply my-10 w-11/12 
+.anime-cover
   img
-    @apply w-screen h-screen
-    
-.anime-data
-  @apply flex flex-col 
+    @apply w-screen
+    @apply h-screen
+.anime-title-container
+  @apply absolute 
+  @apply w-full h-full 
+.anime-title
+  @apply text-transparent
+.anime:hover
+  .anime-title-container
+    @apply bg-black bg-opacity-75
+    @apply transition duration-700 ease-in-out   
+  .anime-title
+    @apply flex flex-col items-center justify-center 
+    @apply w-full h-full
+    @apply text-white 
+.anime-stat
+  @apply flex flex-wrap justify-around w-full
+.anime-info
+  @apply w-6/12
+.anime-ranking
+  @apply flex flex-wrap justify-between
 
-    
-    
+  

@@ -1,23 +1,22 @@
 import React, { useEffect } from "react";
 import "../styles/api/Anime.style.sass";
-
+import Icon from 'react-fa';
 import AnimeScreen from "../components/AnimeScreen";
-import SearchBar from "../components/SearchBar";
+import CarouselScreen from "../components/Carousel";
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 
 import { useStoreActions, useStoreState } from "easy-peasy";
 
 const DataFetching = () => {
-  const { animeList, ratingList, selectedIndex } = useStoreState(
+  const {  animeList, selectedIndex } = useStoreState(
     (state) => state.anime
   );
-  const { setAnimeList, setRatingList, changeAnime } = useStoreActions(
+  const { setAnimeList, setRatingList} = useStoreActions(
     (actions) => actions.anime
   );
-
   const url = "https://kitsu.io/api/edge/anime";
-  
+
   useEffect(() => {
     async function getAnime() {
       try {
@@ -35,7 +34,6 @@ const DataFetching = () => {
           }
           animeArray.push(...anime);
           nextUrl = data.links.next;
-
         }
 
         setAnimeList({ animeList: animeArray });
@@ -47,37 +45,10 @@ const DataFetching = () => {
     getAnime();
   }, []);
 
-  function carousel() {
-    return (
-      <Carousel className="anime-list" slidesPerPage={5} arrows infinite>
-        {animeList && ratingList
-          ? animeList.map((result, index) => {
-              if (result.attributes.posterImage && result.attributes.coverImage) {
-                return (
-                  <button
-                    onClick={() => changeAnime({ index })}
-                    key={result.id}
-                  >
-                    <img id ="image" src={result.attributes.posterImage.small} alt="Cover" />
-                  </button>
-                );
-              }
-              return null;
-            })
-          : "Loading data"}
-      </Carousel>
-    );
-  }
-
   return (
-    <div className="anime-container">
-      {carousel()}
-      {selectedIndex >= 0 ? (
-        <AnimeScreen/>
-      ) : (
-        "Click an anime"
-      )}
-      {/* <SearchBar /> */}
+    <div>
+      <CarouselScreen/>
+      {selectedIndex >= 0 ? <AnimeScreen /> : <p>Please select an anime</p>}
     </div>
   );
 };
