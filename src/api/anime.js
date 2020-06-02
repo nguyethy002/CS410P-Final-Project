@@ -5,7 +5,7 @@ import CarouselScreen from "../components/Carousel";
 import AnimeRating from "../components/AnimeRating";
 
 const DataFetching = () => {
-  const { selectedAnime } = useStoreState((state) => state.anime);
+  // const { selectedAnime } = useStoreState((state) => state.anime);
   const { setAnimeList, setRatingList } = useStoreActions(
     (actions) => actions.anime
   );
