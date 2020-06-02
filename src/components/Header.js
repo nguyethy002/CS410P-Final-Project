@@ -17,6 +17,7 @@ const Header = () => {
       document.removeEventListener("scroll", checkAtTop);
     };
   }, [atTop]);
+  
   return (
     <div
       className={`header-container ${atTop ? "header-container-at-top" : ""}`}
