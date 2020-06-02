@@ -7,7 +7,7 @@ import SideBar from "../components/SideBar";
 const Home = () => {
   return (
     <div className="home-container">
-      <Header/>
+        <Header/>
       <div className="home-anime">
         <DataFetching />
       </div>
