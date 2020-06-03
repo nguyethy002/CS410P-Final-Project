@@ -20,9 +20,10 @@ const CarouselScreen = () => {
         className="anime-list"
         slidesPerPage={4}
         infinite
-        arrowLeft={<Icon name="chevron-left"/>}
-        arrowRight={<Icon name="chevron-right" />}
-        addArrowClickHandler
+        arrows
+        // arrowLeft={<Icon name="chevron-left"/>}
+        // arrowRight={<Icon name="chevron-right" />}
+        // addArrowClickHandler
         
       >
         {animeList && ratingList

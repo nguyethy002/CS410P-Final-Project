@@ -6,7 +6,7 @@ const Header = () => {
 
   useEffect(() => {
     const checkAtTop = () => {
-      const isTop = window.scrollY < 90;
+      const isTop = window.scrollY < 5;
       if (isTop !== atTop) {
         setAtTop(isTop);
       }

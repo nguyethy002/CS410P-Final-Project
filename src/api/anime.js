@@ -5,6 +5,7 @@ import CarouselScreen from "../components/Carousel";
 import AnimeRating from "../components/AnimeRating";
 
 const DataFetching = () => {
+  
   const { selectedAnime } = useStoreState((state) => state.anime);
   const { setAnimeList, setRatingList } = useStoreActions(
     (actions) => actions.anime
@@ -22,7 +23,6 @@ const DataFetching = () => {
           const response = await fetch(nextUrl);
           const data = await response.json();
           const anime = data.data;
-          console.log(anime);
           for (var i = 0; i < anime.length; i++) {
             ratingArray.push(anime[i].attributes.ratingFrequencies);
           }
@@ -42,8 +42,8 @@ const DataFetching = () => {
   return (
     <div>
       <AnimeScreen/>
-      <CarouselScreen/>
-      <AnimeRating/>
+      <CarouselScreen />
+      <AnimeRating />
     </div>
   );
 };
