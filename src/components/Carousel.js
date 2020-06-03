@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import "../styles/api/Anime.style.sass";
-import Icon from 'react-fa';
+import React from "react";
+import "../styles/components/Carousel.style.sass";
+// import Icon from 'react-fa';
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 

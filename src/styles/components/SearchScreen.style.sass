@@ -4,13 +4,18 @@
   @apply items-center 
   @apply transition duration-700 ease-in-out
 .search-screen
-  @apply grid grid-cols-4 gap-10
-  
+  @apply grid grid-cols-3 gap-10
+  @screen sm
+    @apply grid-cols-4
 .search-screen-image
   @apply flex flex-col
   @apply justify-center items-center
+  img
+    @apply z-0 relative transition duration-700 
+  img:hover
+    @apply transform scale-150 z-10
   p
     @apply hidden
-    @sm
+    @screen sm
       @apply inline
   

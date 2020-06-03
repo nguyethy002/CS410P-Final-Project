@@ -1,5 +1,5 @@
 import React from "react";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
+import { Doughnut, Line } from "react-chartjs-2";
 import { useStoreState } from "easy-peasy";
 import "../styles/components/AnimeData.style.sass";
 
@@ -35,32 +35,36 @@ const AnimeRating = () => {
   };
 
   function haha() {
-    if (anime && rating) {
+    if (
+      anime &&
+      rating &&
+      anime.attributes.ratingRank &&
+      anime.attributes.popularityRank
+    ) {
       if (anime.attributes.posterImage && anime.attributes.coverImage) {
         return (
           <div className="anime-container" key={anime.id}>
             <div className="anime-stat">
-            <div className="anime-poster">
-              <img src={anime.attributes.posterImage.medium} alt="Cover" />
-              <p>Start Date: {anime.attributes.startDate}</p>
-              <p>End Date: {anime.attributes.endDate}</p>
-            </div>
-            <div className="anime-info">
-              <div className="anime-ranking">
-                <div className="anime-ranking-info">
-                  <h4>{anime.attributes.canonicalTitle}</h4>
-                  <h4>{anime.attributes.titles.ja_jp}</h4>
-                  <p>Average Rating: {anime.attributes.averageRating} %</p>
-                </div>
-                <div>
-                  <Doughnut data={dataRanking} />
-                </div>
+              <div className="anime-poster">
+                <img src={anime.attributes.posterImage.medium} alt="Cover" />
+                <p>Start Date: {anime.attributes.startDate}</p>
+                <p>End Date: {anime.attributes.endDate}</p>
               </div>
-              <Line data={dataRating} />
+              <div className="anime-info">
+                <div className="anime-ranking">
+                  <div className="anime-ranking-info">
+                    <h4>{anime.attributes.canonicalTitle}</h4>
+                    <h4>{anime.attributes.titles.ja_jp}</h4>
+                    <p>Average Rating: {anime.attributes.averageRating} %</p>
+                  </div>
+                  <div>
+                    <Doughnut data={dataRanking} />
+                  </div>
+                </div>
+                <Line data={dataRating} />
+              </div>
             </div>
           </div>
-          </div>
-          
         );
       }
     }

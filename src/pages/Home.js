@@ -4,7 +4,7 @@ import "../styles/pages/Home.style.sass";
 import DataFetching from "../api/Anime";
 import Header from "../components/Header";
 import SearchScreen from "../components/SearchScreen";
-import SideBar from "../components/SideBar";
+
 
 const Home = () => {
   const searchResult = useStoreState((state) => state.anime.searchResult);
@@ -12,7 +12,7 @@ const Home = () => {
     <div className="home-container">
       <Header />
       {searchResult &&
-      (searchResult.length == 0 || searchResult.length == 50) ? (
+      (searchResult.length === 0 || searchResult.length === 50) ? (
         <div className="home-anime">
           <DataFetching />
         </div>

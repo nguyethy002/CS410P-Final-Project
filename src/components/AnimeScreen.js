@@ -1,7 +1,5 @@
 import React from "react";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
 import { useStoreState } from "easy-peasy";
-import CarouselScreen from "../components/Carousel";
 import "../styles/components/AnimeData.style.sass";
 
 const AnimeScreen = () => {

@@ -279,6 +279,10 @@ const animeModel = {
       anime.attributes.canonicalTitle.toLowerCase().includes(payload.searchTerm)
     );
   }),
+
+  changeSearchAnime: action((state, payload) => {
+    state.searchResult = payload;
+  }),
 };
 
 const store = createStore({

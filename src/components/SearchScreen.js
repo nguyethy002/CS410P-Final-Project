@@ -1,20 +1,26 @@
 import React from "react";
-import { useStoreState } from "easy-peasy";
+import { useStoreState, useStoreActions } from "easy-peasy";
 import "../styles/components/SearchScreen.style.sass";
 
 const SearchScreen = () => {
   const searchResult = useStoreState((state) => state.anime.searchResult);
+  const { changeAnime, changeSearchAnime } = useStoreActions(
+    (actions) => actions.anime
+  );
 
-  if (searchResult) console.log(searchResult.length);
   return (
     <div className="search-screen-container">
       <div className="search-screen">
-        {searchResult && (searchResult.length < 50)
+        {searchResult && searchResult.length < 50
           ? searchResult.map((item) => {
-              if (item.attributes.posterImage) {
+              if (item.attributes.posterImage && item.attributes.coverImage) {
                 return (
                   <div key={item.id} className="search-screen-image">
                     <img
+                      onClick={() => {
+                        changeAnime(item);
+                        changeSearchAnime([]);
+                      }}
                       src={item.attributes.posterImage.small}
                       alt="Cover"
                     />
