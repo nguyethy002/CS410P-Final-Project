@@ -18,6 +18,7 @@ const AnimeRating = () => {
         backgroundColor: "#d6bcfa",
         borderColor: "#44337a",
         borderWidth: 2,
+        fontColor: 'white',
       },
     ],
   };
@@ -30,6 +31,7 @@ const AnimeRating = () => {
         backgroundColor: ["#805ad5", "#e9d8fd"],
         borderColor: "#44337a",
         borderWidth: 2,
+        fontColor: 'white',
       },
     ],
   };
@@ -47,8 +49,16 @@ const AnimeRating = () => {
             <div className="anime-stat">
               <div className="anime-poster">
                 <img src={anime.attributes.posterImage.medium} alt="Cover" />
-                <p>Start Date: {anime.attributes.startDate}</p>
-                <p>End Date: {anime.attributes.endDate}</p>
+                <div className = "anime-poster-info">
+                  <div>
+                    <p>Start Date: {anime.attributes.startDate}</p>
+                    <p>End Date: {anime.attributes.endDate}</p>
+                  </div>
+                  <div>
+                    <p>Episode Count: {anime.attributes.episodeCount} episodes</p>
+                    <p>Episode Length: {anime.attributes.episodeLength} minutes</p>
+                  </div>
+                </div>
               </div>
               <div className="anime-info">
                 <div className="anime-ranking">
