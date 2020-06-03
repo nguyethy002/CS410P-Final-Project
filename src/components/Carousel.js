@@ -21,6 +21,14 @@ const CarouselScreen = () => {
         slidesPerPage={4}
         infinite
         arrows
+        breakpoints={{
+          640: {
+            slidesPerPage: 1,
+          },
+          900: {
+            slidesPerPage: 2,
+          }
+        }}
         // arrowLeft={<Icon name="chevron-left"/>}
         // arrowRight={<Icon name="chevron-right" />}
         // addArrowClickHandler

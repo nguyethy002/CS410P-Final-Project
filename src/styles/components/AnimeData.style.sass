@@ -6,8 +6,9 @@
   @apply mb-10
 .anime-cover
   img
-    @apply w-screen
-    @apply h-screen
+    @apply h-64 w-screen
+    @screen sm
+      @apply h-screen
 .anime-title-container
   @apply absolute transition duration-700 ease-in-out
   @apply w-full h-full 
@@ -23,8 +24,12 @@
 .anime-stat
   @apply flex flex-wrap justify-around w-full
 .anime-info
-  @apply w-7/12
+  @apply w-full
+  @screen md
+    @apply w-7/12
 .anime-ranking
-  @apply flex flex-wrap justify-between
+  @apply flex flex-col justify-between 
+  @screen sm
+    @apply flex-row
 
   
