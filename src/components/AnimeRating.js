@@ -27,7 +27,7 @@ const AnimeRating = () => {
       {
         label: "Ranking",
         data: [anime.attributes.ratingRank, anime.attributes.popularityRank],
-        backgroundColor: ["#d6bcfa", "#9f7aea"],
+        backgroundColor: ["#805ad5", "#e9d8fd"],
         borderColor: "#44337a",
         borderWidth: 2,
       },

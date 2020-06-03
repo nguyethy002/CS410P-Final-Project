@@ -1,6 +1,6 @@
 import React from "react";
 import { useStoreActions } from "easy-peasy";
-// import Icon from 'react-fa';
+import Icon from 'react-fa';
 import "../styles/components/SearchBar.style.sass";
 
 const SearchBar = () => {
@@ -13,6 +13,7 @@ const SearchBar = () => {
  
   return (
     <div className="search-bar">
+      <Icon name="search"/>
       <input type="text" placeholder="Search" onChange={handleChange}/>
     </div>
   );
