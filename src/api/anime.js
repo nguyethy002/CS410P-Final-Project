@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import AnimeScreen from "../components/AnimeScreen";
-import { useStoreActions, useStoreState } from "easy-peasy";
+import { useStoreActions} from "easy-peasy";
 import CarouselScreen from "../components/Carousel";
 import AnimeRating from "../components/AnimeRating";
 

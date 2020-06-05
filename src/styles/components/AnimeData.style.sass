@@ -1,16 +1,19 @@
 @import "../general.style"
 .anime-container
-  @apply flex flex-col items-center 
+  @apply flex flex-col 
+  @apply items-center 
 .anime
   @apply relative z-0
   @apply mb-10
 .anime-cover
   img
-    @apply h-64 w-screen
+    @apply h-64 
+    @apply w-screen
     @screen sm
       @apply h-screen
 .anime-title-container
-  @apply absolute transition duration-700 ease-in-out
+  @apply absolute 
+  @apply transition duration-700 ease-in-out
   @apply w-full h-full 
 .anime-title
   @apply text-transparent
@@ -18,19 +21,24 @@
   .anime-title-container
     @apply bg-black bg-opacity-75
   .anime-title
-    @apply flex flex-col items-center justify-center 
+    @apply flex flex-col 
+    @apply items-center justify-center 
     @apply w-full h-full
     @apply text-white 
 .anime-stat
-  @apply flex flex-wrap justify-around w-full
+  @apply flex flex-wrap 
+  @apply justify-around 
+  @apply w-full
 .anime-poster-info
-  @apply flex flex-row justify-between
+  @apply flex flex-row 
+  @apply justify-between
 .anime-info
   @apply w-full
   @screen md
     @apply w-7/12
 .anime-ranking
-  @apply flex flex-col justify-between 
+  @apply flex flex-col 
+  @apply justify-between 
   @screen md
     @apply flex-row
 

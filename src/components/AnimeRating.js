@@ -31,7 +31,12 @@ const AnimeRating = () => {
         backgroundColor: ["#805ad5", "#e9d8fd"],
         borderColor: "#44337a",
         borderWidth: 2,
-        fontColor: 'white',
+        defaultFontColor: 'white',
+        legend: {
+          labels:{
+            fontColor: 'white'
+          }
+        }
       },
     ],
   };

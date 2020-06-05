@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/components/Carousel.style.sass";
-// import Icon from 'react-fa';
+import Icon from 'react-fa';
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 
@@ -20,7 +20,7 @@ const CarouselScreen = () => {
         className="anime-list"
         slidesPerPage={4}
         infinite
-        arrows
+        // arrows
         breakpoints={{
           640: {
             slidesPerPage: 1,
@@ -29,9 +29,9 @@ const CarouselScreen = () => {
             slidesPerPage: 2,
           }
         }}
-        // arrowLeft={<Icon name="chevron-left"/>}
-        // arrowRight={<Icon name="chevron-right" />}
-        // addArrowClickHandler
+        arrowLeft={<Icon name="chevron-left"/>}
+        arrowRight={<Icon name="chevron-right" />}
+        addArrowClickHandler
         
       >
         {animeList && ratingList
